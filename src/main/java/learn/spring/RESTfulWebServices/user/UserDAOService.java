@@ -1,5 +1,6 @@
 package learn.spring.RESTfulWebServices.user;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -21,10 +22,10 @@ public class UserDAOService {
     }
 
     @GetMapping("/users/{id}")
-    public User retrieveUser(@PathVariable int id) {
+    public User retrieveUser(@PathVariable int id) throws UserNotFoundException {
         User user = service.findOne(id);
         if (user == null)
-            throw new UserNotFoundException("id: " + id);
+            throw new UserNotFoundException("userId=" + id);
         return user;
     }
 
@@ -39,5 +40,4 @@ public class UserDAOService {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
-
 }
