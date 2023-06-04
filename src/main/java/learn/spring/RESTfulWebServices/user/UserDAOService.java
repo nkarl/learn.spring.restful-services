@@ -1,5 +1,6 @@
 package learn.spring.RESTfulWebServices.user;
 
+import jakarta.validation.Valid;
 import learn.spring.RESTfulWebServices.exception.UserNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class UserDAOService {
 
     //    @RequestMapping(path = "/users", method = RequestMethod.POST)
     @PostMapping(path = "/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         service.save(user);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
