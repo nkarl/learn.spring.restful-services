@@ -1,6 +1,6 @@
 package learn.spring.RESTfulWebServices.user;
 
-import org.springframework.http.HttpStatus;
+import learn.spring.RESTfulWebServices.exception.UserNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -23,10 +23,16 @@ public class UserDAOService {
 
     @GetMapping("/users/{id}")
     public User retrieveUser(@PathVariable int id) throws UserNotFoundException {
-        User user = service.findOne(id);
+        User user = service.findById(id);
         if (user == null)
             throw new UserNotFoundException("userId=" + id);
         return user;
+    }
+
+
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id) throws UserNotFoundException {
+        service.deleteById(id);
     }
 
     //    @RequestMapping(path = "/users", method = RequestMethod.POST)
