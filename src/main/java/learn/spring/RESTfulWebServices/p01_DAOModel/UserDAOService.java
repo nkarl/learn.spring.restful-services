@@ -2,6 +2,7 @@ package learn.spring.RESTfulWebServices.p01_DAOModel;
 
 import jakarta.validation.Valid;
 import learn.spring.RESTfulWebServices.p02_ExceptionHandling.UserNotFoundException;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -23,11 +24,12 @@ public class UserDAOService {
     }
 
     @GetMapping("/users/{id}")
-    public User retrieveUser(@PathVariable int id) throws UserNotFoundException {
+    public EntityModel<User> retrieveUser(@PathVariable int id) throws UserNotFoundException {
         User user = service.findById(id);
         if (user == null)
             throw new UserNotFoundException("userId=" + id);
-        return user;
+
+        return EntityModel.of(user);
     }
 
 
