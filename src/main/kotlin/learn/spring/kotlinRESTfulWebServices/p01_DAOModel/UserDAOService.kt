@@ -1,5 +1,6 @@
 package learn.spring.kotlinRESTfulWebServices.p01_DAOModel
 
+import learn.spring.RESTfulWebServices.p02_ExceptionHandling.UserNotFoundException
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
@@ -9,13 +10,17 @@ import java.net.URI
 class UserDAOService(private val service: UserDAO) {
 
     @GetMapping("/users")
-    fun retrieveAllUsers(): List<User> {
+    fun getAllUsers(): List<User> {
         return service.findAll()
     }
 
     @GetMapping("/users/{id}")
-    fun retrieveUser(@PathVariable id: Int): User {
-        return service.findById(id)
+    fun getUser(@PathVariable id: Int): User {
+        val user: User =
+            service.findById(id)
+        if (user == null)
+            throw UserNotFoundException("id=$id")
+        return user
     }
 
     @DeleteMapping("/users/{id}")
