@@ -1,5 +1,6 @@
 package learn.spring.RESTfulWebServices.p01_DAOModel;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;

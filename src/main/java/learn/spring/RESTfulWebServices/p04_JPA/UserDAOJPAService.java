@@ -11,15 +11,14 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserDAOJPAService {
-    private final UserDAO service;
 
     private final UserRepository repository;
 
-    public UserDAOJPAService(UserDAO service, UserRepository repository) {
-        this.service = service;
+    public UserDAOJPAService(UserRepository repository) {
         this.repository = repository;
     }
 
@@ -29,9 +28,9 @@ public class UserDAOJPAService {
     }
 
     @GetMapping("/jpa/users/{id}")
-    public EntityModel<User> retrieveUser(@PathVariable int id) throws UserNotFoundException {
-        User user = service.findById(id);
-        if (user == null)
+    public EntityModel<Optional<User>> retrieveUser(@PathVariable int id) throws UserNotFoundException {
+        Optional<User> user = repository.findById(id);
+        if (user.isEmpty())
             throw new UserNotFoundException("userId=" + id);
 
         return EntityModel.of(user);
@@ -40,13 +39,13 @@ public class UserDAOJPAService {
 
     @DeleteMapping("/jpa/users/{id}")
     public void deleteUser(@PathVariable int id) throws UserNotFoundException {
-        service.deleteById(id);
+        repository.deleteById(id);
     }
 
     //    @RequestMapping(path = "/jpa/users", method = RequestMethod.POST)
     @PostMapping(path = "/jpa/users")
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
-        service.save(user);
+        repository.save(user);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
