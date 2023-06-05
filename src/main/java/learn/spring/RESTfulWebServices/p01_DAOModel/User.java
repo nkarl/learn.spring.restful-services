@@ -1,4 +1,4 @@
-package learn.spring.RESTfulWebServices.user;
+package learn.spring.RESTfulWebServices.p01_DAOModel;
 
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;

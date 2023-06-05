@@ -1,4 +1,4 @@
-package learn.spring.RESTfulWebServices.HelloWorld;
+package learn.spring.RESTfulWebServices.p00_HelloWorld;
 
 public class HelloWorldBean {
 

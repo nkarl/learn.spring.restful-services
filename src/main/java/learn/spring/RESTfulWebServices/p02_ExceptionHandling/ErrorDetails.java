@@ -1,4 +1,4 @@
-package learn.spring.RESTfulWebServices.exception;
+package learn.spring.RESTfulWebServices.p02_ExceptionHandling;
 
 import java.time.LocalDateTime;
 

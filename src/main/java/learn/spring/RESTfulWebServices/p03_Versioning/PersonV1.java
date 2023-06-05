@@ -1,4 +1,4 @@
-package learn.spring.RESTfulWebServices.versioning;
+package learn.spring.RESTfulWebServices.p03_Versioning;
 
 public class PersonV1 {
     private String name;
