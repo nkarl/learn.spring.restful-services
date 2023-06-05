@@ -9,7 +9,9 @@ import java.net.URI
 class UserDAOService(private val service: UserDAO) {
 
     @GetMapping("/users")
-    fun retrieveAllUsers() { service.findAll() }
+    fun retrieveAllUsers(): List<User> {
+        return service.findAll()
+    }
 
     @GetMapping("/users/{id}")
     fun retrieveUser(@PathVariable id: Int): User {
@@ -22,7 +24,7 @@ class UserDAOService(private val service: UserDAO) {
     }
 
     @PostMapping("/users")
-    fun createUser(@RequestBody user: User) : ResponseEntity<User> {
+    fun createUser(@RequestBody user: User): ResponseEntity<User> {
         val newUser: User = service.save(user)
         val location: URI = ServletUriComponentsBuilder
             .fromCurrentRequest()

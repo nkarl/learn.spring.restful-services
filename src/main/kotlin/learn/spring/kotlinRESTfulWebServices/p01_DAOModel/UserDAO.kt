@@ -13,7 +13,7 @@ class UserDAO {
         User(++usersCount, "Jim", LocalDate.now().minusYears(20)),
     )
 
-    public fun findAll() = listOf(users)
+    public fun findAll(): List<User> { return users }
 
     fun findById(id: Int): User {
         val user = users.filter { it.id == id }
