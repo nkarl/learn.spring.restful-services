@@ -1,4 +1,4 @@
-package learn.spring.RESTfulWebServices.p02_ExceptionHandling;
+package learn.spring.RESTfulServices.p02_ExceptionHandling;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

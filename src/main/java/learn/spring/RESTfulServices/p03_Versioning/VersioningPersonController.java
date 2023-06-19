@@ -1,4 +1,4 @@
-package learn.spring.RESTfulWebServices.p03_Versioning;
+package learn.spring.RESTfulServices.p03_Versioning;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,4 +1,4 @@
-package learn.spring.RESTfulWebServices;
+package learn.spring.RESTfulServices;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

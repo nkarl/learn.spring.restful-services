@@ -1,4 +1,4 @@
-package learn.spring.RESTfulWebServices.p01_DAOModel;
+package learn.spring.RESTfulServices.p01_DAOModel;
 
 import org.springframework.stereotype.Component;
 

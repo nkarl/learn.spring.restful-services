@@ -1,8 +1,8 @@
-package learn.spring.RESTfulWebServices.p04_JPA;
+package learn.spring.RESTfulServices.p04_JPA;
 
 import jakarta.validation.Valid;
-import learn.spring.RESTfulWebServices.p01_DAOModel.User;
-import learn.spring.RESTfulWebServices.p02_ExceptionHandling.UserNotFoundException;
+import learn.spring.RESTfulServices.p01_DAOModel.User;
+import learn.spring.RESTfulServices.p02_ExceptionHandling.UserNotFoundException;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,10 +29,17 @@ public class UserDAOJPAService {
     @GetMapping("/jpa/users/{id}")
     public EntityModel<Optional<User>> getUser(@PathVariable int id) throws UserNotFoundException {
         Optional<User> user = repository.findById(id);
-        if (user.isEmpty())
-            throw new UserNotFoundException("userId=" + id);
+        if (user.isEmpty()) throw new UserNotFoundException("userId=" + id);
 
         return EntityModel.of(user);
+    }
+
+    @GetMapping("/jpa/users/{id}/posts")
+    public List<Post> getUserPosts(@PathVariable int id) {
+        Optional<User> user = repository.findById(id);
+        if (user.isEmpty()) throw new UserNotFoundException("userId=" + id);
+
+        return user.get().getPosts();
     }
 
     @DeleteMapping("/jpa/users/{id}")
@@ -44,11 +51,7 @@ public class UserDAOJPAService {
     @PostMapping(path = "/jpa/users")
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         repository.save(user);
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(user.getId())
-                .toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
 }

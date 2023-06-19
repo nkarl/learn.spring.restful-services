@@ -1,4 +1,4 @@
-package learn.spring.RESTfulWebServices;
+package learn.spring.RESTfulServices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class App {
 
     public static void main(String[] args) {
-        SpringApplication.run(learn.spring.RESTfulWebServices.App.class, args);
+        SpringApplication.run(learn.spring.RESTfulServices.App.class, args);
     }
 
 }

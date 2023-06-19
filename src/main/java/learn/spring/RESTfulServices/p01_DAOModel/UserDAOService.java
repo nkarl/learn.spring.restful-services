@@ -1,7 +1,7 @@
-package learn.spring.RESTfulWebServices.p01_DAOModel;
+package learn.spring.RESTfulServices.p01_DAOModel;
 
 import jakarta.validation.Valid;
-import learn.spring.RESTfulWebServices.p02_ExceptionHandling.UserNotFoundException;
+import learn.spring.RESTfulServices.p02_ExceptionHandling.UserNotFoundException;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
