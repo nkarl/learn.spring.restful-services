@@ -1,1 +1,1 @@
-rootProject.name = "restful-webservices"
+rootProject.name = "restful-services"
